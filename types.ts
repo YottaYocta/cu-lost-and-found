@@ -6,12 +6,12 @@ export enum PostType {
 }
 
 export interface ItemPost {
-  userId: string;
-  type: PostType;
+  userID: string;
+  postType: PostType;
   resolved: boolean;
   name: string;
   description: string;
   image?: string;
-  location: GeoPoint;
+  location: string;
   createdAt: Timestamp;
 }
