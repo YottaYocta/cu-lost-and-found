@@ -10,6 +10,7 @@ export interface ItemPost {
   postType: PostType;
   resolved: boolean;
   name: string;
+  contact: string;
   description: string;
   image?: string;
   location: string;

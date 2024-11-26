@@ -47,6 +47,7 @@ const queryItems = async (filters: ItemQueryFilters): Promise<ItemPost[]> => {
         description: item.description,
         image: item.image,
         location: item.location,
+        contact: item.contact,
         createdAt: new Timestamp(
           item.createdAt.seconds,
           item.createdAt.nanoseconds
