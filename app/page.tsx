@@ -1,5 +1,11 @@
-import Image from "next/image";
+"use client";
+import { Button } from "@/components/ui/button";
+import { signInWithGoogle } from "@/firebase";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <Button onClick={signInWithGoogle}></Button>
+    </div>
+  );
 }
