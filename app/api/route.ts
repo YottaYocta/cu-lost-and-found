@@ -8,21 +8,36 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
-  return Response.json({
-    message: `POST data received: ${JSON.stringify(data)}`,
-  });
+  return Response.json(
+    {
+      message: `POST data received: ${JSON.stringify(data)}`,
+    },
+    {
+      status: 200,
+    }
+  );
 };
 
 export const PUT = async (req: NextRequest) => {
   const data = await req.json();
-  return Response.json({
-    message: `PUT data received: ${JSON.stringify(data)}`,
-  });
+  return Response.json(
+    {
+      message: `PUT data received: ${JSON.stringify(data)}`,
+    },
+    {
+      status: 200,
+    }
+  );
 };
 
 export const DELETE = async (req: NextRequest) => {
   const userIDQuery = req.nextUrl.searchParams.get("userID");
-  return Response.json({
-    message: `received request to delete user with ID: ${userIDQuery}`,
-  });
+  return Response.json(
+    {
+      message: `received request to delete user with ID: ${userIDQuery}`,
+    },
+    {
+      status: 200,
+    }
+  );
 };
