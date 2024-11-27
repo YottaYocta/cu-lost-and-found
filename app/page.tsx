@@ -1,5 +1,5 @@
 "use client";
-import { AuthProvider, useAuth } from "./(components)/AuthContext";
+import { AuthProvider } from "./(components)/AuthContext";
 import { useState } from "react";
 import { ItemSearch } from "./(components)/ItemSearch";
 import LoginLogoutButton from "./(components)/LoginLogoutButton";
@@ -7,7 +7,6 @@ import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
 
 export default function Home() {
-  const authContext = useAuth();
   const [name, setName] = useState<string>("");
   const [dateRangeStart, setDateRangeStart] = useState<Date>(
     new Date(2024, 10)

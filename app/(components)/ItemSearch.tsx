@@ -10,7 +10,6 @@ import {
   Dispatch,
   SetStateAction,
   useEffect,
-  useState,
   HTMLAttributes,
 } from "react";
 import DatePickerWithRange from "./DateRangePicker";

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "./AuthContext";
-import { signOut, User } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth, signInWithGoogle } from "@/firebase";
 
 const LoginLogoutButton = () => {
