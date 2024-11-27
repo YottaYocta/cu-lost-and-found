@@ -12,7 +12,7 @@ import ItemInfoModal from "./ItemInfoModal";
 
 const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
   return (
-    <Card className="flex flex-row w-[480px] overflow-clip">
+    <Card className="flex flex-row w-[512px] overflow-clip">
       {itemPost.image ? (
         <Image
           alt="an image of an object"
@@ -28,17 +28,35 @@ const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
           height={SM_IMAGE_SIZE}
         ></Image>
       )}
-      <div className="flex flex-col items-start">
-        <CardHeader>
-          <CardTitle>{itemPost.name}</CardTitle>
+      <div className="flex flex-col items-start w-full">
+        <CardHeader className="w-full">
+          <div className="flex flex-row items-center  w-full justify-between">
+            <CardTitle>{itemPost.name}</CardTitle>
+            <p className="opacity-50">
+              {itemPost.resolved ? "resolved" : "unresolved"}
+            </p>
+          </div>
         </CardHeader>
-        <CardContent>
-          <div className="flex flex-row justify-between">
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex flex-col justify-between ">
             <p>{formatDate(itemPost.createdAt.toDate())}</p>
-            <p>{getDayDifference(itemPost.createdAt.toDate(), new Date())}</p>
+            <p>
+              {(() => {
+                const dayDifference = getDayDifference(
+                  itemPost.createdAt.toDate(),
+                  new Date()
+                );
+                if (dayDifference === 0) {
+                  return "Posted today";
+                } else if (dayDifference === 1) {
+                  return "Posted yesterday";
+                } else {
+                  return `Posted ${dayDifference} days ago`;
+                }
+              })()}
+            </p>
           </div>
           <p>{itemPost.location}</p>
-          <p>{itemPost.resolved ? "Resolved" : "Unresolved"}</p>
         </CardContent>
         <CardFooter className="mt-auto">
           <ItemInfoModal

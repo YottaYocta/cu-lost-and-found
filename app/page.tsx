@@ -1,23 +1,13 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { signOut, User } from "firebase/auth";
-import { auth, signInWithGoogle } from "@/firebase";
 import { AuthProvider, useAuth } from "./(components)/AuthContext";
 import { useState } from "react";
 import { ItemSearch } from "./(components)/ItemSearch";
-import AuthIndicatorTest from "./(components)/AuthIndicatorTest";
+import LoginLogoutButton from "./(components)/LoginLogoutButton";
 import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
 
 export default function Home() {
-  const login = () => {
-    signInWithGoogle();
-  };
-
-  const logout = () => {
-    signOut(auth);
-  };
-
+  const authContext = useAuth();
   const [name, setName] = useState<string>("");
   const [dateRangeStart, setDateRangeStart] = useState<Date>(
     new Date(2024, 10)
@@ -53,8 +43,9 @@ export default function Home() {
   return (
     <div>
       <AuthProvider>
-        <Button onClick={login}>Login</Button>
-        <Button onClick={logout}>Logout</Button>
+        <div className="w-full p-4 flex flex-row justify-end gap-4">
+          <LoginLogoutButton></LoginLogoutButton>
+        </div>
         <div className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-16 sm:px-8 lg:px-16">
           <div className="flex flex-col gap-8 items-center">
             <h1 className="text-4xl">Recently Found Items</h1>

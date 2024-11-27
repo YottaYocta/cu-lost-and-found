@@ -32,7 +32,7 @@ const ItemInfoModal = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>{dialogTriggerText}</Button>
+        <Button className="min-w-36">{dialogTriggerText}</Button>
       </DialogTrigger>
       <DialogPortal>
         <DialogOverlay className="flex items-center justify-center w-screen h-screen">

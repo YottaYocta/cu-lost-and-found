@@ -56,6 +56,10 @@ export const ItemSearch = ({
     setSearchName(e.target.value);
   };
 
+  useEffect(() => {
+    onSearchSubmit();
+  }, [searchName]);
+
   const handleLocationInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
   };
@@ -98,15 +102,12 @@ export const ItemSearch = ({
               ></Checkbox>
               <Label>search with location</Label>
             </div>
-            {useLocation ? (
-              <Input
-                placeholder="search for a location"
-                value={location}
-                onChange={handleLocationInputChange}
-              ></Input>
-            ) : (
-              <></>
-            )}
+            <Input
+              placeholder="search for a location"
+              value={location}
+              onChange={handleLocationInputChange}
+              disabled={!useLocation}
+            ></Input>
             <Button onClick={onSearchSubmit}>Update Search Filters</Button>
           </Card>
         </PopoverContent>
