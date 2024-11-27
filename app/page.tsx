@@ -33,7 +33,7 @@ export default function Home() {
       name: name,
       postType: PostType.SIGHTING,
       userID: undefined,
-      location: location,
+      location: useLocation ? location : undefined,
       dateRangeStart: dateRangeStart,
       dateRangeEnd: dateRangeEnd,
       resolved: resolved,
@@ -46,7 +46,7 @@ export default function Home() {
         <div className="w-full p-4 flex flex-row justify-end gap-4">
           <LoginLogoutButton></LoginLogoutButton>
         </div>
-        <div className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-16 sm:px-8 lg:px-16">
+        <div className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-16 sm:px-2 lg:px-4">
           <div className="flex flex-col gap-8 items-center">
             <h1 className="text-4xl">Recently Found Items</h1>
             <ItemSearch
