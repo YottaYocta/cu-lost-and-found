@@ -10,22 +10,24 @@ import { ItemPost } from "@/types";
 import { formatTimestamp, getDayDifference } from "@/util";
 import { Button } from "@/components/ui/button";
 
-export const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
+const IMAGE_SIZE = 150;
+
+const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
   return (
-    <Card className="flex flex-row">
+    <Card className="flex flex-row w-[480px] overflow-clip">
       {itemPost.image ? (
         <Image
           alt="an image of an object"
           src={itemPost.image}
-          width={300}
-          height={300}
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
         ></Image>
       ) : (
         <Image
           alt="placeholder image"
-          src={"https://placehold.co/300x300.png"}
-          width={300}
-          height={300}
+          src={`https://placehold.co/${IMAGE_SIZE}x${IMAGE_SIZE}.png`}
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
         ></Image>
       )}
       <div className="flex flex-col items-start">
@@ -37,7 +39,7 @@ export const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
             <p>{formatTimestamp(itemPost.createdAt)}</p>
             <p>{getDayDifference(itemPost.createdAt.toDate(), new Date())}</p>
           </div>
-          <p>itemPost.location</p>
+          <p>{itemPost.location}</p>
         </CardContent>
         <CardFooter className="mt-auto">
           <Button>More Info</Button>
@@ -46,3 +48,5 @@ export const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
     </Card>
   );
 };
+
+export default ItemCard;

@@ -1,9 +1,33 @@
 import { NextRequest } from "next/server";
+import { ItemPost, PostType } from "@/types";
+import { faker } from "@faker-js/faker";
+import { Timestamp } from "firebase/firestore";
 export const GET = async (req: NextRequest) => {
-  const userIDQuery = req.nextUrl.searchParams.get("userID");
-  return Response.json({
-    message: `This is the base API route, and you tried to get data for user with ID ${userIDQuery}`,
-  });
+  const userID = req.nextUrl.searchParams.get("userID");
+  const name = req.nextUrl.searchParams.get("name");
+  const location = req.nextUrl.searchParams.get("location");
+  const dateRangeStart = req.nextUrl.searchParams.get("dateRangeStart");
+  const dateRangeEnd = req.nextUrl.searchParams.get("dateRangeEnd");
+  const resolved = req.nextUrl.searchParams.get("resolved");
+  const postType = req.nextUrl.searchParams.get("postType") as PostType;
+
+  const response: ItemPost[] = [];
+
+  for (let i = 0; i < 10; i++) {
+    response.push({
+      userID: faker.string.uuid(),
+      postType: postType,
+      resolved: Math.random() > 0.5,
+      name: faker.commerce.productName(),
+      contact: faker.phone.number(),
+      description: faker.commerce.productDescription(),
+      image: faker.image.urlPicsumPhotos(),
+      location: faker.location.city(),
+      createdAt: Timestamp.fromDate(new Date()),
+    });
+  }
+
+  return Response.json(response);
 };
 
 export const POST = async (req: NextRequest) => {

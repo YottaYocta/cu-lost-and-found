@@ -16,3 +16,13 @@ export interface ItemPost {
   location: string;
   createdAt: Timestamp;
 }
+
+export interface ItemQueryFilters {
+  name: string;
+  userID: string | undefined;
+  location: string | undefined;
+  dateRangeStart: Date;
+  dateRangeEnd: Date;
+  postType: PostType;
+  resolved: boolean;
+}
