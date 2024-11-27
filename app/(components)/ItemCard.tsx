@@ -40,6 +40,7 @@ const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
             <p>{getDayDifference(itemPost.createdAt.toDate(), new Date())}</p>
           </div>
           <p>{itemPost.location}</p>
+          <p>{itemPost.resolved ? "Resolved" : "Unresolved"}</p>
         </CardContent>
         <CardFooter className="mt-auto">
           <Button>More Info</Button>
