@@ -7,10 +7,8 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { ItemPost } from "@/types";
-import { formatTimestamp, getDayDifference } from "@/util";
-import { Button } from "@/components/ui/button";
-
-const IMAGE_SIZE = 150;
+import { formatDate, getDayDifference, SM_IMAGE_SIZE } from "@/util";
+import ItemInfoModal from "./ItemInfoModal";
 
 const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
   return (
@@ -19,15 +17,15 @@ const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
         <Image
           alt="an image of an object"
           src={itemPost.image}
-          width={IMAGE_SIZE}
-          height={IMAGE_SIZE}
+          width={SM_IMAGE_SIZE}
+          height={SM_IMAGE_SIZE}
         ></Image>
       ) : (
         <Image
           alt="placeholder image"
-          src={`https://placehold.co/${IMAGE_SIZE}x${IMAGE_SIZE}.png`}
-          width={IMAGE_SIZE}
-          height={IMAGE_SIZE}
+          src={`https://placehold.co/${SM_IMAGE_SIZE}x${SM_IMAGE_SIZE}.png`}
+          width={SM_IMAGE_SIZE}
+          height={SM_IMAGE_SIZE}
         ></Image>
       )}
       <div className="flex flex-col items-start">
@@ -36,14 +34,17 @@ const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
         </CardHeader>
         <CardContent>
           <div className="flex flex-row justify-between">
-            <p>{formatTimestamp(itemPost.createdAt)}</p>
+            <p>{formatDate(itemPost.createdAt.toDate())}</p>
             <p>{getDayDifference(itemPost.createdAt.toDate(), new Date())}</p>
           </div>
           <p>{itemPost.location}</p>
           <p>{itemPost.resolved ? "Resolved" : "Unresolved"}</p>
         </CardContent>
         <CardFooter className="mt-auto">
-          <Button>More Info</Button>
+          <ItemInfoModal
+            dialogTriggerText="more info"
+            itemPost={itemPost}
+          ></ItemInfoModal>
         </CardFooter>
       </div>
     </Card>

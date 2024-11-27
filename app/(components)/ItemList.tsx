@@ -35,11 +35,12 @@ const queryItems = async (filters: ItemQueryFilters): Promise<ItemPost[]> => {
     return data.map(
       (item: any): ItemPost => ({
         userID: item.userID,
+        userName: item.userName,
         postType: item.postType as PostType,
         resolved: item.resolved,
         name: item.name,
         description: item.description,
-        image: undefined,
+        image: item.image,
         location: item.location,
         contact: item.contact,
         createdAt: new Timestamp(

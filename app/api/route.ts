@@ -16,17 +16,19 @@ export const GET = async (req: NextRequest) => {
   for (let i = 0; i < 10; i++) {
     response.push({
       userID: faker.string.uuid(),
+      userName: faker.person.firstName(),
       postType: postType,
-      resolved: Math.random() > 0.5,
+      resolved: resolved === "true",
       name: faker.commerce.productName(),
       contact: faker.phone.number(),
       description: faker.commerce.productDescription(),
-      image: faker.image.urlPicsumPhotos(),
+      image: undefined,
       location: faker.location.city(),
       createdAt: Timestamp.fromDate(new Date()),
     });
   }
 
+  console.log(response);
   return Response.json(response);
 };
 

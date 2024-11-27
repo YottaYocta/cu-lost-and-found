@@ -1,9 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 
-export const formatTimestamp: (timeStamp: Timestamp) => string = (
-  timeStamp: Timestamp
-) => {
-  const postDate = timeStamp.toDate();
+export const formatDate: (postDate: Date) => string = (postDate: Date) => {
   const formattedTime = postDate.toLocaleString("en-US", {
     hour: "numeric",
     minute: "2-digit",
@@ -23,3 +20,6 @@ export const getDayDifference: (startDay: Date, endDay: Date) => number = (
   const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   return daysAgo;
 };
+
+export const SM_IMAGE_SIZE = 150;
+export const LG_IMAGE_SIZE = 250;

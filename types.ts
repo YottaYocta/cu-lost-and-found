@@ -6,6 +6,7 @@ export enum PostType {
 }
 
 export interface ItemPost {
+  userName: string;
   userID: string;
   postType: PostType;
   resolved: boolean;
