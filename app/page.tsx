@@ -5,6 +5,8 @@ import { ItemSearch } from "./(components)/ItemSearch";
 import LoginLogoutButton from "./(components)/LoginLogoutButton";
 import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
@@ -39,6 +41,8 @@ export default function Home() {
     });
   };
 
+  const handleReportClick = () => {};
+
   return (
     <div>
       <AuthProvider>
@@ -48,22 +52,27 @@ export default function Home() {
         <div className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-16 sm:px-2 lg:px-4">
           <div className="flex flex-col gap-8 items-center">
             <h1 className="text-4xl">Recently Found Items</h1>
-            <ItemSearch
-              searchName={name}
-              setSearchName={setName}
-              dateRangeStart={dateRangeStart}
-              setDateRangeStart={setDateRangeStart}
-              dateRangeEnd={dateRangeEnd}
-              setDateRangeEnd={setDateRangeEnd}
-              resolved={resolved}
-              setResolved={setResolved}
-              location={location}
-              setLocation={setLocation}
-              onSearchSubmit={onSearchSubmit}
-              className="w-[512px]"
-              useLocation={useLocation}
-              setUseLocation={setUseLocation}
-            ></ItemSearch>
+            <div className="flex flex-row gap-2">
+              <ItemSearch
+                searchName={name}
+                setSearchName={setName}
+                dateRangeStart={dateRangeStart}
+                setDateRangeStart={setDateRangeStart}
+                dateRangeEnd={dateRangeEnd}
+                setDateRangeEnd={setDateRangeEnd}
+                resolved={resolved}
+                setResolved={setResolved}
+                location={location}
+                setLocation={setLocation}
+                onSearchSubmit={onSearchSubmit}
+                className="w-[512px]"
+                useLocation={useLocation}
+                setUseLocation={setUseLocation}
+              ></ItemSearch>
+              <Button onClick={handleReportClick}>
+                Not Listed? Report a Missing Item
+              </Button>
+            </div>
           </div>
           <ItemList itemQueryFilters={itemQuery}></ItemList>
         </div>
