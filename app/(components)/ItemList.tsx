@@ -33,6 +33,7 @@ const queryItems = async (filters: ItemQueryFilters): Promise<ItemPost[]> => {
     const data = await res.json();
 
     return data.map(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (item: any): ItemPost => ({
         userID: item.userID,
         userName: item.userName,
@@ -71,6 +72,7 @@ const ItemList = ({
 
   useEffect(() => {
     updateItemList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemQueryFilters]);
 
   return (

@@ -6,7 +6,6 @@ import LoginLogoutButton from "./(components)/LoginLogoutButton";
 import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function Home() {
   const [name, setName] = useState<string>("");

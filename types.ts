@@ -1,4 +1,4 @@
-import { Timestamp, GeoPoint } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 
 export enum PostType {
   MISSING = "missing",
