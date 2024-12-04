@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "./AuthContext";
 import { signOut } from "firebase/auth";
 import { auth, signInWithGoogle } from "@/firebase";
+import { HTMLAttributes } from "react";
 
-const LoginLogoutButton = () => {
+const LoginLogoutButton = ({ className }: HTMLAttributes<HTMLDivElement>) => {
   const authContext = useAuth();
 
   const login = () => {
@@ -17,9 +18,13 @@ const LoginLogoutButton = () => {
   };
 
   return authContext && authContext.user ? (
-    <Button onClick={logout}>Logout</Button>
+    <Button className={className} onClick={logout}>
+      Logout
+    </Button>
   ) : (
-    <Button onClick={login}>Login</Button>
+    <Button className={className} onClick={login}>
+      Login
+    </Button>
   );
 };
 
