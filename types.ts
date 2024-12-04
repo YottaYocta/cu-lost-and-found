@@ -39,6 +39,23 @@ export const isItemPost = (object: any): object is ItemPost => {
   );
 };
 
+export const isCreateItemPostRequestData = (
+  object: any
+): object is CreateItemPostRequestData => {
+  return (
+    typeof object.userName === "string" &&
+    typeof object.userID === "string" &&
+    typeof object.postType === "string" &&
+    (object.postType === PostType.MISSING ||
+      object.postType === PostType.SIGHTING) &&
+    typeof object.name === "string" &&
+    typeof object.contact === "string" &&
+    typeof object.description === "string" &&
+    (typeof object.image === "string" || object.image === null) &&
+    typeof object.location === "string"
+  );
+};
+
 export interface ItemQueryFilters {
   name: string;
   userID: string | undefined;

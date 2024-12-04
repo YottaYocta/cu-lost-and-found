@@ -1,5 +1,11 @@
 import { NextRequest } from "next/server";
-import { isItemPost, ItemPost, ItemPostWithId, PostType } from "@/types";
+import {
+  isCreateItemPostRequestData,
+  isItemPost,
+  ItemPost,
+  ItemPostWithId,
+  PostType,
+} from "@/types";
 import {
   addDoc,
   collection,
@@ -90,7 +96,7 @@ const createPost = async (data: ItemPost) => {
 
 export const POST = async (req: NextRequest) => {
   const data: unknown = await req.json();
-  if (isItemPost(data)) {
+  if (isCreateItemPostRequestData(data)) {
     const newItemPost: ItemPost = {
       userName: data.userName,
       userID: data.userID,
