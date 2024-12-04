@@ -16,16 +16,17 @@ import {
 import { Label } from "@/components/ui/label";
 import { formatDate, getDayDifference, LG_IMAGE_SIZE } from "@/util";
 import Image from "next/image";
-import { useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import { useAuth } from "./AuthContext";
 
 const ItemInfoModal = ({
   itemPost,
   dialogTriggerText,
+  className,
 }: {
   itemPost: ItemPostWithId;
   dialogTriggerText: string;
-}) => {
+} & HTMLAttributes<HTMLDivElement>) => {
   const [showingContact, setShowingContact] = useState<boolean>(false);
   const authContext = useAuth();
 
@@ -67,7 +68,7 @@ const ItemInfoModal = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="min-w-36">{dialogTriggerText}</Button>
+        <Button className={className}>{dialogTriggerText}</Button>
       </DialogTrigger>
       <DialogPortal>
         <DialogOverlay className="flex items-center justify-center w-screen h-screen">

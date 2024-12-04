@@ -21,6 +21,7 @@ import {
 } from "./AuthenticatedModal";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useAuth } from "./AuthContext";
+import { HTMLAttributes } from "react";
 
 const formSchema = z.object({
   itemName: z.string().min(1),
@@ -51,7 +52,10 @@ interface AddPostModalProps {
 export const AddPostModal = ({
   modalTriggerText,
   postType,
-}: AuthenticatedModalProps & AddPostModalProps) => {
+  className,
+}: AuthenticatedModalProps &
+  AddPostModalProps &
+  HTMLAttributes<HTMLButtonElement>) => {
   const authContext = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -110,7 +114,10 @@ export const AddPostModal = ({
   };
 
   return (
-    <AuthenticatedModal modalTriggerText={modalTriggerText}>
+    <AuthenticatedModal
+      className={className}
+      modalTriggerText={modalTriggerText}
+    >
       {postType === PostType.MISSING ? (
         <Card className="flex flex-col p-8 gap-4">
           <DialogTitle>

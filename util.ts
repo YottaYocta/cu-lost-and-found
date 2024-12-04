@@ -21,7 +21,7 @@ export const getDayDifference: (startDay: Date, endDay: Date) => number = (
   return daysAgo;
 };
 
-export const SM_IMAGE_SIZE = 150;
+export const SM_IMAGE_SIZE = 200;
 export const LG_IMAGE_SIZE = 250;
 
 export const chainFilter = <T>(arr: T[], filters: ((T) => boolean)[]) => {

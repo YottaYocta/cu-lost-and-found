@@ -69,21 +69,23 @@ export const ItemSearch = ({
         placeholder="search for an item"
         value={searchName}
         onChange={handleNameInputChange}
-        className="min-w-64"
+        className="min-w-64 bg-white h-12"
       ></Input>
-      <Button onClick={onSearchSubmit}>Search</Button>
+      <DatePickerWithRange
+        dateRangeEnd={dateRangeEnd}
+        dateRangeStart={dateRangeStart}
+        setDateRangeEnd={setDateRangeEnd}
+        setDateRangeStart={setDateRangeStart}
+        className="h-12"
+      ></DatePickerWithRange>
       <Popover>
         <PopoverTrigger asChild>
-          <Button className="w-32">filters...</Button>
+          <Button className="w-32 h-12 bg-medium-gray hover:bg-light-gray">
+            filters...
+          </Button>
         </PopoverTrigger>
         <PopoverContent>
-          <Card className="flex flex-col p-8 gap-4 m-4">
-            <DatePickerWithRange
-              dateRangeEnd={dateRangeEnd}
-              dateRangeStart={dateRangeStart}
-              setDateRangeEnd={setDateRangeEnd}
-              setDateRangeStart={setDateRangeStart}
-            ></DatePickerWithRange>
+          <Card className="flex flex-col p-8 gap-4 m-4 z-50">
             <div className="flex flex-row items-center gap-1">
               <Checkbox
                 defaultChecked={resolved}
@@ -112,6 +114,13 @@ export const ItemSearch = ({
           </Card>
         </PopoverContent>
       </Popover>
+
+      <Button
+        onClick={onSearchSubmit}
+        className="h-12 bg-medium-gray hover:bg-light-gray"
+      >
+        Search
+      </Button>
     </div>
   );
 };

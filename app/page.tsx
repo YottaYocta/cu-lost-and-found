@@ -7,8 +7,6 @@ import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
 import { AddPostModal } from "./(components)/AddPostModal";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { AuthenticatedModal } from "./(components)/AuthenticatedModal";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
@@ -60,78 +58,86 @@ export default function Home() {
     <div>
       <AuthProvider>
         <div className="w-full p-4 flex flex-row justify-between gap-4 px-8">
-          <div>
+          <div className="w-48">
             <Link href="/">Cornell Lost and Found</Link>
           </div>
           <div className="flex flex-row gap-4">
             <AddPostModal
               modalTriggerText="Report Lost Item"
               postType={PostType.MISSING}
+              className="bg-danger hover:bg-danger-hover w-56"
             ></AddPostModal>
             <AddPostModal
               modalTriggerText="Report Lost Item Sighting"
+              className="bg-danger hover:bg-danger-hover w-56"
               postType={PostType.SIGHTING}
             ></AddPostModal>
-            <AuthenticatedModal modalTriggerText="My Posts"></AuthenticatedModal>
           </div>
-          <div className="flex flex-row gap-4 items-center">
-            <Link href="/about">About</Link>
-            <LoginLogoutButton></LoginLogoutButton>
+          <div>
+            <LoginLogoutButton className="w-48"></LoginLogoutButton>
           </div>
         </div>
         <div className="">
-          <Tabs className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-16 sm:px-2 lg:px-4">
-            <TabsList>
-              <TabsTrigger value="missing">missing</TabsTrigger>
-              <TabsTrigger value="sightings">sightings</TabsTrigger>
+          <Tabs
+            defaultValue={PostType.MISSING}
+            className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-8 sm:px-2 lg:px-4"
+          >
+            <TabsList className="bg-white p-2 gap-2 h-auto">
+              <TabsTrigger
+                value="missing"
+                className="p-4 data-[state=active]:bg-primary data-[state=active]:text-white text-1xl"
+              >
+                I&apos;M LOOKING FOR SOMETHING I LOST
+              </TabsTrigger>
+              <TabsTrigger
+                value="sightings"
+                className="p-4 data-[state=active]:bg-primary data-[state=active]:text-white text-1xl"
+              >
+                I FOUND A LOST ITEM
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="missing">
-              <div className="flex flex-col gap-8 items-center">
-                <h1 className="text-4xl">Recently Found Items</h1>
-                <div className="flex flex-col gap-2">
-                  <ItemSearch
-                    searchName={name}
-                    setSearchName={setName}
-                    dateRangeStart={dateRangeStart}
-                    setDateRangeStart={setDateRangeStart}
-                    dateRangeEnd={dateRangeEnd}
-                    setDateRangeEnd={setDateRangeEnd}
-                    resolved={resolved}
-                    setResolved={setResolved}
-                    location={location}
-                    setLocation={setLocation}
-                    onSearchSubmit={onSearchFoundSubmit}
-                    className="w-[512px]"
-                    useLocation={useLocation}
-                    setUseLocation={setUseLocation}
-                  ></ItemSearch>
-                </div>
+              <div className="flex flex-col  items-center gap-4">
+                <ItemSearch
+                  searchName={name}
+                  setSearchName={setName}
+                  dateRangeStart={dateRangeStart}
+                  setDateRangeStart={setDateRangeStart}
+                  dateRangeEnd={dateRangeEnd}
+                  setDateRangeEnd={setDateRangeEnd}
+                  resolved={resolved}
+                  setResolved={setResolved}
+                  location={location}
+                  setLocation={setLocation}
+                  onSearchSubmit={onSearchFoundSubmit}
+                  className="w-full"
+                  useLocation={useLocation}
+                  setUseLocation={setUseLocation}
+                ></ItemSearch>
+                <ItemList itemQueryFilters={itemQuery}></ItemList>
               </div>
             </TabsContent>
             <TabsContent value="sightings">
-              <div className="flex flex-col gap-8 items-center">
-                <h1 className="text-4xl">Recent Missing Item Posts</h1>
-                <div className="flex flex-col gap-2 items-center">
-                  <ItemSearch
-                    searchName={name}
-                    setSearchName={setName}
-                    dateRangeStart={dateRangeStart}
-                    setDateRangeStart={setDateRangeStart}
-                    dateRangeEnd={dateRangeEnd}
-                    setDateRangeEnd={setDateRangeEnd}
-                    resolved={resolved}
-                    setResolved={setResolved}
-                    location={location}
-                    setLocation={setLocation}
-                    onSearchSubmit={onSearchMissingSubmit}
-                    className="w-[512px]"
-                    useLocation={useLocation}
-                    setUseLocation={setUseLocation}
-                  ></ItemSearch>
-                </div>
+              <div className="flex flex-col  items-center gap-4">
+                <ItemSearch
+                  searchName={name}
+                  setSearchName={setName}
+                  dateRangeStart={dateRangeStart}
+                  setDateRangeStart={setDateRangeStart}
+                  dateRangeEnd={dateRangeEnd}
+                  setDateRangeEnd={setDateRangeEnd}
+                  resolved={resolved}
+                  setResolved={setResolved}
+                  location={location}
+                  setLocation={setLocation}
+                  onSearchSubmit={onSearchMissingSubmit}
+                  className="w-[512px]"
+                  useLocation={useLocation}
+                  setUseLocation={setUseLocation}
+                ></ItemSearch>
+                <ItemList itemQueryFilters={itemQuery}></ItemList>
               </div>
             </TabsContent>
-            <ItemList itemQueryFilters={itemQuery}></ItemList>
           </Tabs>
         </div>
       </AuthProvider>

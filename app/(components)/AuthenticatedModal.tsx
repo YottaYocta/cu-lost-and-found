@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "./AuthContext";
 import { signInWithGoogle } from "@/firebase";
-import { PropsWithChildren } from "react";
+import { HTMLAttributes, PropsWithChildren } from "react";
 import { Card } from "@/components/ui/card";
 
 import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
@@ -18,13 +18,16 @@ export interface AuthenticatedModalProps {
 export const AuthenticatedModal = ({
   modalTriggerText,
   children,
-}: AuthenticatedModalProps & PropsWithChildren) => {
+  className,
+}: AuthenticatedModalProps &
+  PropsWithChildren &
+  HTMLAttributes<HTMLButtonElement>) => {
   const authContext = useAuth();
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="min-w-36">{modalTriggerText}</Button>
+        <Button className={`min-w-36 ${className}`}>{modalTriggerText}</Button>
       </DialogTrigger>
       <DialogPortal>
         <DialogOverlay className="flex items-center justify-center w-screen h-screen">

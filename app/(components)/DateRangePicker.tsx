@@ -57,7 +57,7 @@ const DatePickerWithRange = ({
             id="dateRange"
             variant={"outline"}
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
+              "w-[300px] justify-start text-left font-normal h-12",
               !dateRange && "text-muted-foreground"
             )}
           >
