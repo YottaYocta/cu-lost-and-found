@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import "dotenv/config";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -16,9 +17,14 @@ console.log(firebaseConfig.authDomain);
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore();
 const authProvider = new GoogleAuthProvider();
 const signInWithGoogle = () => {
-  signInWithPopup(auth, authProvider);
+  try {
+    signInWithPopup(auth, authProvider);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export { auth, authProvider, signInWithGoogle };
+export { auth, authProvider, signInWithGoogle, db };

@@ -6,11 +6,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { ItemPost } from "@/types";
+import { ItemPostWithId } from "@/types";
 import { formatDate, getDayDifference, SM_IMAGE_SIZE } from "@/util";
 import ItemInfoModal from "./ItemInfoModal";
 
-const ItemCard = ({ itemPost }: { itemPost: ItemPost }) => {
+const ItemCard = ({ itemPost }: { itemPost: ItemPostWithId }) => {
   return (
     <Card className="flex flex-row w-[512px] overflow-clip">
       {itemPost.image ? (

@@ -1,10 +1,12 @@
-import { ItemPost, PostType } from "@/types";
+import { ItemPostWithId, PostType } from "@/types";
 import { Timestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
 import { ItemQueryFilters } from "@/types";
 
-const queryItems = async (filters: ItemQueryFilters): Promise<ItemPost[]> => {
+const queryItems = async (
+  filters: ItemQueryFilters
+): Promise<ItemPostWithId[]> => {
   const params = new URLSearchParams({
     name: filters.name,
     dateRangeStart: filters.dateRangeStart.getTime().toString(),
@@ -34,7 +36,8 @@ const queryItems = async (filters: ItemQueryFilters): Promise<ItemPost[]> => {
 
     return data.map(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (item: any): ItemPost => ({
+      (item: any): ItemPostWithId => ({
+        postID: item.postID,
         userID: item.userID,
         userName: item.userName,
         postType: item.postType as PostType,
@@ -62,7 +65,7 @@ const ItemList = ({
 }: {
   itemQueryFilters: ItemQueryFilters;
 }) => {
-  const [items, setItems] = useState<ItemPost[]>([]);
+  const [items, setItems] = useState<ItemPostWithId[]>([]);
 
   const updateItemList = async (): Promise<void> => {
     const itemQueryResult = await queryItems(itemQueryFilters);

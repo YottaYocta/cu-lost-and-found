@@ -23,3 +23,12 @@ export const getDayDifference: (startDay: Date, endDay: Date) => number = (
 
 export const SM_IMAGE_SIZE = 150;
 export const LG_IMAGE_SIZE = 250;
+
+export const chainFilter = <T>(arr: T[], filters: ((T) => boolean)[]) => {
+  filters.forEach((filter) => {
+    let temp = arr.filter(filter);
+    arr = temp;
+    console.log(temp);
+  });
+  return arr;
+};
