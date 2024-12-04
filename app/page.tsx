@@ -5,7 +5,7 @@ import { ItemSearch } from "./(components)/ItemSearch";
 import LoginLogoutButton from "./(components)/LoginLogoutButton";
 import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
-import { Button } from "@/components/ui/button";
+import { LoginOrRedirectButton } from "./(components)/LoginOrRedirectButton";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
@@ -40,8 +40,6 @@ export default function Home() {
     });
   };
 
-  const handleReportClick = () => {};
-
   return (
     <div>
       <AuthProvider>
@@ -68,9 +66,9 @@ export default function Home() {
                 useLocation={useLocation}
                 setUseLocation={setUseLocation}
               ></ItemSearch>
-              <Button onClick={handleReportClick}>
+              <LoginOrRedirectButton href="/post-missing">
                 Not Listed? Report a Missing Item
-              </Button>
+              </LoginOrRedirectButton>
             </div>
           </div>
           <ItemList itemQueryFilters={itemQuery}></ItemList>
