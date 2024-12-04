@@ -57,7 +57,7 @@ export const ItemSearch = ({
 
   useEffect(() => {
     onSearchSubmit();
-  }, [searchName]);
+  }, []);
 
   const handleLocationInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
@@ -71,6 +71,7 @@ export const ItemSearch = ({
         onChange={handleNameInputChange}
         className="min-w-64"
       ></Input>
+      <Button onClick={onSearchSubmit}>Search</Button>
       <Popover>
         <PopoverTrigger asChild>
           <Button className="w-32">filters...</Button>

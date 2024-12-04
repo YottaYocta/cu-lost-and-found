@@ -1,4 +1,4 @@
-import { ItemPost, PostType } from "@/types";
+import { ItemPostWithId, PostType } from "@/types";
 import {
   Dialog,
   DialogContent,
@@ -17,15 +17,52 @@ import { Label } from "@/components/ui/label";
 import { formatDate, getDayDifference, LG_IMAGE_SIZE } from "@/util";
 import Image from "next/image";
 import { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 const ItemInfoModal = ({
   itemPost,
   dialogTriggerText,
 }: {
-  itemPost: ItemPost;
+  itemPost: ItemPostWithId;
   dialogTriggerText: string;
 }) => {
   const [showingContact, setShowingContact] = useState<boolean>(false);
+  const authContext = useAuth();
+
+  const deletePost = async () => {
+    if (authContext && authContext.user) {
+      const params = new URLSearchParams({
+        postID: itemPost.postID,
+      });
+      const res = await fetch(`api?${params.toString()}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+      console.log(data);
+      window.location.reload();
+    } else {
+      console.error("invalid credentials");
+    }
+  };
+
+  const resolvePost = async () => {
+    if (authContext && authContext.user) {
+      const res = await fetch("api", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ postID: itemPost.postID }),
+      });
+
+      const data = await res.json();
+      console.log(data);
+      window.location.reload();
+    } else {
+      console.error("invalid credentials");
+    }
+  };
 
   return (
     <Dialog>
@@ -116,6 +153,20 @@ const ItemInfoModal = ({
                   <div className="bg-neutral-600 w-full h-56"></div>
                 </div>
                 <DialogFooter className="mt-auto">
+                  {authContext &&
+                  authContext.user &&
+                  authContext.user.uid === itemPost.userID ? (
+                    <Button onClick={resolvePost}>Mark as Resolved</Button>
+                  ) : (
+                    <></>
+                  )}
+                  {authContext &&
+                  authContext.user &&
+                  authContext.user.uid === itemPost.userID ? (
+                    <Button onClick={deletePost}>Delete</Button>
+                  ) : (
+                    <></>
+                  )}
                   <DialogClose asChild>
                     <Button type="submit">Close</Button>
                   </DialogClose>

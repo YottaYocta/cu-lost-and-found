@@ -5,7 +5,7 @@ import { ItemSearch } from "./(components)/ItemSearch";
 import LoginLogoutButton from "./(components)/LoginLogoutButton";
 import ItemList from "./(components)/ItemList";
 import { ItemQueryFilters, PostType } from "@/types";
-import { LoginOrRedirectButton } from "./(components)/LoginOrRedirectButton";
+import { AddPostModal } from "./(components)/AddPostModal";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
@@ -44,12 +44,17 @@ export default function Home() {
     <div>
       <AuthProvider>
         <div className="w-full p-4 flex flex-row justify-end gap-4">
+          <AddPostModal
+            modalTriggerText="Found a Lost Item? Report an Item Sighting"
+            postType={PostType.SIGHTING}
+          ></AddPostModal>
+
           <LoginLogoutButton></LoginLogoutButton>
         </div>
         <div className="w-screen flex flex-col items-center justify-center mt-16 mb-16 gap-16 sm:px-2 lg:px-4">
           <div className="flex flex-col gap-8 items-center">
             <h1 className="text-4xl">Recently Found Items</h1>
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-col gap-2">
               <ItemSearch
                 searchName={name}
                 setSearchName={setName}
@@ -66,9 +71,10 @@ export default function Home() {
                 useLocation={useLocation}
                 setUseLocation={setUseLocation}
               ></ItemSearch>
-              <LoginOrRedirectButton href="/post-missing">
-                Not Listed? Report a Missing Item
-              </LoginOrRedirectButton>
+              <AddPostModal
+                modalTriggerText="Not Listed? Report a Missing Item"
+                postType={PostType.MISSING}
+              ></AddPostModal>
             </div>
           </div>
           <ItemList itemQueryFilters={itemQuery}></ItemList>
