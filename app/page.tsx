@@ -65,11 +65,11 @@ export default function Home() {
             <AddPostModal
               modalTriggerText="Report Lost Item"
               postType={PostType.MISSING}
-              className="bg-danger hover:bg-danger-hover w-56"
+              className="bg-white text-danger hover:bg-white hover:text-danger-hover w-56"
             ></AddPostModal>
             <AddPostModal
               modalTriggerText="Report Lost Item Sighting"
-              className="bg-danger hover:bg-danger-hover w-56"
+              className="bg-white text-danger hover:bg-white hover:text-danger-hover w-56"
               postType={PostType.SIGHTING}
             ></AddPostModal>
           </div>
@@ -131,7 +131,7 @@ export default function Home() {
                   location={location}
                   setLocation={setLocation}
                   onSearchSubmit={onSearchMissingSubmit}
-                  className="w-[512px]"
+                  className="w-full"
                   useLocation={useLocation}
                   setUseLocation={setUseLocation}
                 ></ItemSearch>

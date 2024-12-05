@@ -135,7 +135,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Item Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="i.e. green water bottle" {...field} />
                     </FormControl>
                     <FormDescription>What object did you lose?</FormDescription>
                     <FormMessage />
@@ -149,7 +149,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Contact</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="abc123@cornell.edu" {...field} />
                     </FormControl>
                     <FormDescription>
                       Enter your contact information so others can reach out to
@@ -166,7 +166,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Image Link</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="" {...field} />
                     </FormControl>
                     <FormDescription>
                       (Optional) a link to an image of what you lost
@@ -182,7 +182,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="" {...field} />
                     </FormControl>
                     <FormDescription>
                       A brief description of what you lost. Helpful information
@@ -200,7 +200,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Location</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="i.e. Appel" {...field} />
                     </FormControl>
                     <FormDescription>
                       A location estimate for where you lost your item
@@ -230,7 +230,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Item Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="green water bottle" {...field} />
                     </FormControl>
                     <FormDescription>What object did you find?</FormDescription>
                     <FormMessage />
@@ -244,7 +244,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Contact</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="abc123@cornell.edu" {...field} />
                     </FormControl>
                     <FormDescription>
                       Enter your contact information so the original owners of
@@ -261,7 +261,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Image Link</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="" {...field} />
                     </FormControl>
                     <FormDescription>
                       (Optional) a link to an image of what you found
@@ -277,7 +277,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="" {...field} />
                     </FormControl>
                     <FormDescription>
                       A brief description of the item someone else left behind.
@@ -296,7 +296,7 @@ export const AddPostModal = ({
                   <FormItem>
                     <FormLabel>Location</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="Appel" {...field} />
                     </FormControl>
                     <FormDescription>
                       The location where you found this item
