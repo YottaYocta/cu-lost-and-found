@@ -21,7 +21,18 @@ const db = getFirestore();
 const authProvider = new GoogleAuthProvider();
 const signInWithGoogle = () => {
   try {
-    signInWithPopup(auth, authProvider);
+    signInWithPopup(auth, authProvider)
+      .then(() => {})
+      .catch(function (error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        console.log(errorCode);
+        alert(errorCode);
+
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        alert(errorMessage);
+      });
   } catch (err) {
     console.log(err);
   }
